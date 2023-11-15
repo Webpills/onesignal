@@ -21019,13 +21019,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              if (!oneSignal.value.User.PushSubscription.optedIn) {
+              if (!oneSignal.User.PushSubscription.optedIn) {
                 _context2.next = 6;
                 break;
               }
               console.log('Le notifiche push sono già abilitate. disabilito');
               _context2.next = 4;
-              return oneSignal.value.User.PushSubscription.optOut();
+              return oneSignal.User.PushSubscription.optOut();
             case 4:
               _context2.next = 7;
               break;
@@ -21045,14 +21045,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            if (oneSignal.User.PushSubscription.optedIn) {
-              console.log('Le notifiche push sono già abilitate. Imposto switch a SI');
-              $(pushNotificationSwitch).prop("checked", true).trigger('change');
-              // await oneSignal.User.PushSubscription.optOut();
-            } else {
-              console.log('Le notifiche push non sono abilitate. Imposto switch a NO');
-              $(pushNotificationSwitch).prop("checked", false).trigger('change');
-            }
+            setTimeout(function () {
+              if (oneSignal.User.PushSubscription.optedIn) {
+                console.log('Le notifiche push sono già abilitate. Imposto switch a SI');
+                $(pushNotificationSwitch).prop("checked", true).trigger('change');
+                // await oneSignal.User.PushSubscription.optOut();
+              } else {
+                console.log('Le notifiche push non sono abilitate. Imposto switch a NO');
+                $(pushNotificationSwitch).prop("checked", false).trigger('change');
+              }
+            }, 1000);
           case 1:
           case "end":
             return _context3.stop();

@@ -56,9 +56,9 @@ export default {
         //disattiva notifiche
         const pushOff = async () => {
      
-                if (oneSignal.value.User.PushSubscription.optedIn) {
+                if (oneSignal.User.PushSubscription.optedIn) {
                     console.log('Le notifiche push sono già abilitate. disabilito');
-                    await oneSignal.value.User.PushSubscription.optOut();
+                    await oneSignal.User.PushSubscription.optOut();
                 } else {
                     console.log('Le notifiche push non sono abilitate. Chiedendo il permesso...');
                    
@@ -67,6 +67,10 @@ export default {
            }
         
         onMounted(async () => {
+
+            setTimeout(() => {
+                
+            
             if (oneSignal.User.PushSubscription.optedIn) {
                     console.log('Le notifiche push sono già abilitate. Imposto switch a SI');
                     $(pushNotificationSwitch).prop("checked", true).trigger('change'); 
@@ -77,7 +81,7 @@ export default {
                     $(pushNotificationSwitch).prop("checked", false).trigger('change'); 
                     
                 }
-         
+            }, 1000);
         });
 
         return{
